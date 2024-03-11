@@ -349,3 +349,36 @@ background-color: #0056b3;
   padding: 10px;
   border-radius: 5px;
 }
+
+
+#home {
+  background-image: url("../images/background_sba.png");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  font-size: 48px;
+  color: #333;
+}
+.intro-text {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+.cta-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
