@@ -16,7 +16,7 @@ from .forms import LoginForm, RegisterForm
 from django.contrib import messages
 from .forms import ContactForm
 from django.http import HttpResponseRedirect
-
+from django.contrib.auth.decorators import login_required
 
 
 def home_page(request):
@@ -41,10 +41,10 @@ def contact(request):
     return render(request, 'main/contact.html', {'form': form})
 
 
-
+@login_required
 def formulaire(request):
     api_url = os.environ.get('URL_API')
-    print(api_url)
+    
 
     if request.method == "POST":
         form = ModelApiForm(request.POST)
