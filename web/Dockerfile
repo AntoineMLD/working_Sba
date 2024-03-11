@@ -1,0 +1,22 @@
+FROM python:3.9
+
+# Définition du répertoire de travail dans le conteneur
+WORKDIR /app
+
+ENV PYTHONUNBUFFERED 1
+
+# Copie du fichier requirements.txt dans le répertoire de travail
+COPY requirements.txt .
+
+# Installation des dépendances Python
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copie de tout le contenu du répertoire courant dans le répertoire de travail du conteneur
+COPY . .
+
+# Exposition du port 8000 (port par défaut pour Django)
+EXPOSE 8000
+
+RUN chmod +x /app/entrypoint.sh
+
+ENTRYPOINT ["sh","/app/entrypoint.sh"]

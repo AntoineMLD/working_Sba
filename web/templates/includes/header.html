@@ -1,0 +1,39 @@
+{% load static %}
+{% load i18n %}
+
+<header id="navbar">
+    <nav class="navbar-container container">
+      <a href="{% url 'home' %}" class="home-link">
+        <div class="navbar-logo"></div>
+        Project USBA Simplon
+      </a>
+      <button type="button" class="burger" id="navbar-toggle" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle menu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div id="navbar-menu" aria-labelledby="navbar-toggle">
+        <ul class="navbar-links">
+          <li class="navbar-item"><a class="navbar-link" href="{% url 'home' %}"> Home</a></li>
+          <li class="navbar-item"><a class="navbar-link" href="{% url 'about' %}"> About Us</a></li>
+          <li class="navbar-item"><a class="navbar-link" href="{% url 'formulaire' %}"> Form Prediction</a></li>
+          <li class="navbar-item"><a class="navbar-link" href="{% url 'contact' %}"> Contact</a></li>
+          
+          <!-- Authentication Links -->
+          {% if user.is_authenticated %}
+            <li class="navbar-item user-info">
+              <span class="navbar-link">{{ user.get_username }}</span>
+              <ul class="navbar-submenu">
+                <li><a href="{% url 'logout' %}" class="navbar-link"> Log out</a></li>
+              </ul>
+            </li>
+          {% else %}
+            <li class="navbar-item"><a class="navbar-link" href="{% url 'login' %}"> Login</a></li>
+            <li class="navbar-item"><a class="navbar-link" href="{% url 'register' %}"> Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    
+</header>
+<br><br><br>

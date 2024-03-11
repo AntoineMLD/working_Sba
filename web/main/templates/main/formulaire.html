@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<div class="form-container">
+  <div class="form-image">
+    
+  </div>
+  <div class="form-content">
+    <h1>Formulaire de Prédiction</h1>
+    <p>Remplissez les champs pour prédire la garantie</p>
+    <form method="POST">
+      {% csrf_token %}
+      <!-- Dynamiquement généré à partir de votre formulaire Django -->
+      {% for field in formulaire %} 
+      <div class="form-field">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}
+        <small>{{ field.help_text }}</small>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <button type="submit">Soumettre</button>
+    </form>
+    <div>
+          <div>
+              {% if data %}
+      
+              <strong>Prédiction :</strong>
+              <span>
+                {% if data.prediction == 1 %}
+                  Prêt garanti !
+                {% else %}
+                  Garantie refusée !
+                {% endif %}
+              </span>
+          </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}
