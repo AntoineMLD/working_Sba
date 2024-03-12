@@ -3,19 +3,27 @@
 {% load widget_tweaks %}
 {% block content %}
 
-
-<form method="post" class="form-signin">
-  {% csrf_token %}
-  <div class="form-label-group">
-    Your username: {{ form.username|add_class:"form-control" }}
-  </div>
-  <div class="form-label-group">
-    Your password: {{ form.password|add_class:"form-control" }}
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-</form>
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+    <form method="post" class="w-full max-w-xs">
+      {% csrf_token %}
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          Your username:
+        </label>
+        {{ form.username|add_class:"appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" }}
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Your password:
+        </label>
+        {{ form.password|add_class:"appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" }}
+      </div>
+      <div class="flex items-center justify-between">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+          Login
+        </button>
+      </div>
+    </form>
+</div>
 
 {% endblock content %}
-
-
-

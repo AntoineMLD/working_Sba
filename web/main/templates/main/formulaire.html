@@ -1,43 +1,29 @@
 {% extends "base.html" %}
-{% load widget_tweaks %}
 {% load static %}
+{% load widget_tweaks %}
 {% block content %}
-<div class="form-container">
-  <div class="form-image">
-    
-  </div>
-  <div class="form-content">
-    <h1>Formulaire de Prédiction</h1>
-    <p>Remplissez les champs pour prédire la garantie</p>
-    <form method="POST">
+
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+    <form method="post" class="w-full max-w-xs">
       {% csrf_token %}
-      <!-- Dynamiquement généré à partir de votre formulaire Django -->
-      {% for field in formulaire %} 
-      <div class="form-field">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}
-        {% if field.help_text %}
-        <small>{{ field.help_text }}</small>
-        {% endif %}
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          Your username:
+        </label>
+        {{ form.username|add_class:"appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" }}
       </div>
-      {% endfor %}
-      <button type="submit">Soumettre</button>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Your password:
+        </label>
+        {{ form.password|add_class:"appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" }}
+      </div>
+      <div class="flex items-center justify-between">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+          Login
+        </button>
+      </div>
     </form>
-    <div>
-          <div>
-              {% if data %}
-      
-              <strong>Prédiction :</strong>
-              <span>
-                {% if data.prediction == 1 %}
-                  Prêt garanti !
-                {% else %}
-                  Garantie refusée !
-                {% endif %}
-              </span>
-          </div>
-      </div>
-      {% endif %}
-    </div>
-  </div>
+</div>
+
 {% endblock content %}
