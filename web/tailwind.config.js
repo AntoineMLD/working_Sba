@@ -1,32 +1,47 @@
-/** @type {import('tailwindcss').Config} */
+/**
+ * This is a minimal config.
+ *
+ * If you need the full config, get it from here:
+ * https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
+ */
+
 module.exports = {
-  content: ["./templates/**/*.{html,js}",
-            "./main/templates/**/*.{html,js}",
-],
-theme: {
-  extend: {
-    // Définition des couleurs personnalisées
-    colors: {
-      'navbar-bg': 'hsl(210, 50%, 15%)',
-      'navbar-text': 'hsl(210, 20%, 80%)',
-      'navbar-text-focus': 'hsl(203, 100%, 50%)',
-      'navbar-bg-contrast': 'hsl(210, 50%, 25%)',
+    content: [
+        /**
+         * HTML. Paths to Django template files that will contain Tailwind CSS classes.
+         */
+
+        /*  Templates within theme app (<tailwind_app_name>/templates), e.g. base.html. */
+        'templates/**/*.html',
+        'main/templates/**/*.html',
+        'global/templates/**/*.html',
+
+        /**
+         * JS: If you use Tailwind CSS in JavaScript, uncomment the following lines and make sure
+         * patterns match your project structure.
+         */
+        /* JS 1: Ignore any JavaScript in node_modules folder. */
+        // '!../../**/node_modules',
+        /* JS 2: Process all JavaScript files in the project. */
+        // '../../**/*.js',
+
+        /**
+         * Python: If you use Tailwind CSS classes in Python, uncomment the following line
+         * and make sure the pattern below matches your project structure.
+         */
+        // '../../**/*.py'
+    ],
+    theme: {
+        extend: {},
     },
-    // Autres ajustements de thème si nécessaire
-    spacing: {
-      '100': '25rem', // Exemple d'ajout d'une nouvelle valeur de spacing
-    },
-    borderRadius: {
-      'large': '12px',
-    },
-    fontFamily: {
-      'sans': ['Arial', 'Helvetica', 'sans-serif'],
-    },
-    boxShadow: {
-      'navbar': '0 2px 4px rgba(0, 0, 0, 0.15)',
-      'menu': '0 0 20px rgba(0, 0, 0, 0.3)',
-    },
-  },
-},
-plugins: [],
-};
+    plugins: [
+        /**
+         * '@tailwindcss/forms' is the forms plugin that provides a minimal styling
+         * for forms. If you don't like it or have own styling for forms,
+         * comment the line below to disable '@tailwindcss/forms'.
+         */
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/aspect-ratio'),
+    ],
+}

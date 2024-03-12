@@ -3,3 +3,4 @@ fastapi<1
 uvicorn<1
 xgboost
 pandas
+python-dotenv

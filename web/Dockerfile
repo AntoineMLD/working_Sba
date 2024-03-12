@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.11.0-slim
 
 # Définition du répertoire de travail dans le conteneur
 WORKDIR /app
@@ -9,6 +9,7 @@ ENV PYTHONUNBUFFERED 1
 COPY requirements.txt .
 
 # Installation des dépendances Python
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copie de tout le contenu du répertoire courant dans le répertoire de travail du conteneur
@@ -19,4 +20,4 @@ EXPOSE 8000
 
 RUN chmod +x /app/entrypoint.sh
 
-ENTRYPOINT ["sh","/app/entrypoint.sh"]
+#ENTRYPOINT ["sh","/app/entrypoint.sh"]

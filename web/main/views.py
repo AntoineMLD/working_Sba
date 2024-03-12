@@ -1,6 +1,8 @@
 import os
 from requests import Session
 import json
+
+from utils.environment import get_env
 from .forms import ModelApiForm
 import json
 from json import JSONDecodeError
@@ -43,9 +45,9 @@ def contact(request):
 
 @login_required
 def formulaire(request):
-    api_url = os.environ.get('URL_API')
+    api_url = get_env('URL_API')
     
-
+    print(api_url)
     if request.method == "POST":
         form = ModelApiForm(request.POST)
         if form.is_valid():
