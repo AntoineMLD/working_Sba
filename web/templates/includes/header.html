@@ -1,35 +1,34 @@
 {% load static %}
 
-
-<header id="navbar" class="fixed inset-x-0 top-0 bg-navbar-bg shadow-lg z-50">
-  <nav class="navbar-container container mx-auto flex justify-between items-center p-4">
-    <a href="{% url 'home' %}" class="home-link flex items-center text-white">
-      <div class="navbar-logo bg-cover bg-center rounded-full w-8 h-8" style="background-image: url('{% static 'images/USBA_PROJECT_navbar_icon.png' %}');"></div>
+<header id="navbar" class="fixed inset-x-0 top-0 bg-gray-800 shadow-lg">
+  <nav class="container mx-auto flex justify-between items-center p-4">
+    <a href="{% url 'home' %}" class="flex items-center text-white">
+      <div class="bg-cover bg-center rounded-full w-8 h-8" style="background-image: url('{% static 'images/USBA_PROJECT_navbar_icon.png' %}');"></div>
       Project USBA Simplon
     </a>
-    <button type="button" class="burger" id="navbar-toggle" aria-controls="navbar-menu" aria-expanded="false"  class="text-navbar-text hover:text-navbar-text-focus focus:text-navbar-text-focus">
-      <span class="icon-bar h-1 w-6 my-1 bg-current"></span>
-      <span class="icon-bar h-1 w-6 my-1 bg-current"></span>
-      <span class="icon-bar h-1 w-6 my-1 bg-current"></span>
+    <button type="button" id="navbar-toggle" aria-controls="navbar-menu" aria-expanded="false" class="text-white hover:text-blue-400 focus:text-blue-400">
+      <span class="icon-bar h-1 w-6 my-1 bg-white"></span>
+      <span class="icon-bar h-1 w-6 my-1 bg-white"></span>
+      <span class="icon-bar h-1 w-6 my-1 bg-white"></span>
     </button>
-    <div id="navbar-menu" class="hidden" aria-labelledby="navbar-toggle">
-      <ul class="navbar-links flex flex-col lg:flex-row list-none mt-4 lg:mt-0">
-        <li class="navbar-item"><a class="navbar-link px-3 py-2 rounded hover:bg-navbar-bg-contrast hover:text-white" href="{% url 'home' %}">Home</a></li>
-        <li class="navbar-item"><a class="navbar-link px-3 py-2 rounded hover:bg-navbar-bg-contrast hover:text-white" href="{% url 'about' %}">About Us</a></li>
-        <li class="navbar-item"><a class="navbar-link px-3 py-2 rounded hover:bg-navbar-bg-contrast hover:text-white" href="{% url 'formulaire' %}">Form Prediction</a></li>
-        <li class="navbar-item"><a class="navbar-link px-3 py-2 rounded hover:bg-navbar-bg-contrast hover:text-white" href="{% url 'contact' %}">Contact</a></li>
+    <div id="navbar-menu" aria-labelledby="navbar-toggle">
+      <ul class="flex flex-col lg:flex-row list-none mt-4 lg:mt-0">
+        <li class="navbar-item"><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'home' %}">Home</a></li>
+        <li class="navbar-item"><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'about' %}">About Us</a></li>
+        <li class="navbar-item"><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'formulaire' %}">Form Prediction</a></li>
+        <li class="navbar-item"><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'contact' %}">Contact</a></li>
         
         <!-- Authentication Links -->
         {% if user.is_authenticated %}
-          <li class="navbar-item user-info relative">
-            <span class="navbar-link px-3 py-2 rounded hover:bg-navbar-bg-contrast hover:text-white">{{ user.get_username }}</span>
-            <ul class="navbar-submenu absolute hidden bg-navbar-bg text-white">
-              <li><a href="{% url 'logout' %}" class="navbar-link block px-3 py-2 hover:bg-navbar-bg-contrast">Log out</a></li>
+          <li class="relative">
+            <span class="px-3 py-2 rounded hover:bg-gray-700 hover:text-white">{{ user.get_username }}</span>
+            <ul class="absolute hidden bg-gray-800 text-white">
+              <li><a href="{% url 'logout' %}" class="block px-3 py-2 text-white hover:bg-gray-700">Log out</a></li>
             </ul>
           </li>
         {% else %}
-          <li class="navbar-item"><a class="navbar-link px-3 py-2 rounded hover:bg-navbar-bg-contrast hover:text-white" href="{% url 'login' %}">Login</a></li>
-          <li class="navbar-item"><a class="navbar-link px-3 py-2 rounded hover:bg-navbar-bg-contrast hover:text-white" href="{% url 'register' %}">Register</a></li>
+          <li><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'login' %}">Login</a></li>
+          <li><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'register' %}">Register</a></li>
         {% endif %}
       </ul>
     </div>
