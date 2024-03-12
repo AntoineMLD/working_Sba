@@ -1,7 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+
+from utils.environment import get_env
 from .models import ModelApi, User
 
+DEBUG = get_env('DEBUG') == '1'
 
 # Ce sont des tuples !
 FRANCHISECODE_CHOICES = (
@@ -52,21 +55,20 @@ NAICS_CHOICES = (
     ( 'Public administration', 'Public administration'),
 )
 
-
 class ModelApiForm(forms.ModelForm):
-    ApprovalDate = forms.DateField(label='Approval Date', widget=forms.DateInput(attrs={'class': 'date-input', 'type': 'date'}))
-    Term = forms.IntegerField(label='Loan term in months')
-    NoEmp = forms.IntegerField(label='Number of business employees')
-    FranchiseCode = forms.ChoiceField(choices=FRANCHISECODE_CHOICES, label='Are you a franchisee ?')
-    Naics = forms.ChoiceField(choices=NAICS_CHOICES, label="Choose your industry")
-    ApprovalFY = forms.IntegerField(label='Fiscal year of commitment')
-    NewExist = forms.ChoiceField(choices=NEWEXIST_CHOICES, label='New if it has existed for less than two years')
-    LowDoc = forms.ChoiceField(choices=LOWDOC_CHOICES, label= 'Do you have a Loan Program ?')
-    GrAppv = forms.IntegerField(label='What is the gross amount of the loan approved by the bank ?')
-    CreateJob = forms.IntegerField(label='Have you generated job creation ?')
-    RetainedJob = forms.IntegerField(label='Have any jobs been retained ?')
-    UrbanRural = forms.ChoiceField(choices=URBANRURAL_CHOICES, label='Are you located in a rural or urban area ?')
-    RevLineCr = forms.ChoiceField(choices=REVLINECR_CHOICES, label='Is a revolving line of credit available ?')
+    ApprovalDate = forms.DateField(label='Approval Date', widget=forms.DateInput(attrs={'class': 'date-input', 'type': 'date'}), initial=lambda: '2024-04-01' if DEBUG else '')
+    Term = forms.IntegerField(label='Loan term in months', initial=lambda: '12' if DEBUG else '')
+    NoEmp = forms.IntegerField(label='Number of business employees', initial=lambda: '5' if DEBUG else '')
+    FranchiseCode = forms.ChoiceField(choices=FRANCHISECODE_CHOICES, label='Are you a franchisee ?', initial=lambda: 'No franchise' if DEBUG else '')
+    Naics = forms.ChoiceField(choices=NAICS_CHOICES, label="Choose your industry", initial=lambda: NAICS_CHOICES[2] if DEBUG else '')
+    ApprovalFY = forms.IntegerField(label='Fiscal year of commitment', initial=lambda: '2020' if DEBUG else '')
+    NewExist = forms.ChoiceField(choices=NEWEXIST_CHOICES, label='New if it has existed for less than two years', initial=lambda: NEWEXIST_CHOICES[1] if DEBUG else '')
+    LowDoc = forms.ChoiceField(choices=LOWDOC_CHOICES, label= 'Do you have a Loan Program ?', initial=lambda: LOWDOC_CHOICES[1] if DEBUG else '')
+    GrAppv = forms.IntegerField(label='What is the gross amount of the loan approved by the bank ?', initial=lambda: '40000' if DEBUG else '')
+    CreateJob = forms.IntegerField(label='Have you generated job creation ?', initial=lambda: '3' if DEBUG else '')
+    RetainedJob = forms.IntegerField(label='Have any jobs been retained ?', initial=lambda: '0' if DEBUG else '')
+    UrbanRural = forms.ChoiceField(choices=URBANRURAL_CHOICES, label='Are you located in a rural or urban area ?', initial=lambda: URBANRURAL_CHOICES[1] if DEBUG else '')
+    RevLineCr = forms.ChoiceField(choices=REVLINECR_CHOICES, label='Is a revolving line of credit available ?', initial=lambda: URBANRURAL_CHOICES[0] if DEBUG else '')
 
     class Meta:
         model = ModelApi

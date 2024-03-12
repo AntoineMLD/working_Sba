@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 from pathlib import Path
-import os
+
+from utils.environment import get_env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -20,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = get_env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') == '1'
+DEBUG = get_env('DEBUG') == '1'
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'main.apps.MainConfig',
-    
 ]
 
 MIDDLEWARE = [
@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'global.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DB_USERNAME = os.getenv('POSTGRES_USER')
-DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
-DB_DATABASE = os.getenv('POSTGRES_DB')
-DB_HOST = os.getenv('POSTGRES_HOST')
-DB_PORT = os.getenv('POSTGRES_PORT')
+DB_USERNAME = get_env('POSTGRES_USER')
+DB_PASSWORD = get_env('POSTGRES_PASSWORD')
+DB_DATABASE = get_env('POSTGRES_DB')
+DB_HOST = get_env('POSTGRES_HOST')
+DB_PORT = get_env('POSTGRES_PORT')
 
 POSTGRES_AVAIL = all(
 
@@ -94,7 +94,7 @@ POSTGRES_AVAIL = all(
     ]
 )
 
-POSTGRES_RDY = int(os.getenv('POSTGRES_RDY'))
+POSTGRES_RDY = int(get_env('POSTGRES_RDY'))
 
 if POSTGRES_AVAIL and POSTGRES_RDY:
 
