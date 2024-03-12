@@ -7,24 +7,25 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- <link href="{% static 'css/output.css' %}" rel="stylesheet">  -->
-        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+        <link href="{% static 'css/output.css' %}" rel="stylesheet">
+        <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>-->
 
-
+    
         
         
     </head>
     <body>
-        
+        <div id="home" class="bg-cover bg-fixed bg-center" style="background-image: url('{% static 'images/background_sba.png' %}'); height: 100vh; display: flex; justify-content: center; align-items: center;">
         {% include "includes/header.html" %} 
-
+        {% load static %}
         {% block content %}
-                
+     
         {% endblock content %} 
-        
+    </div> 
         {% include "includes/footer.html" %} 
-        
+     
         
         <script src={% static "js/script.js" %} async defer></script>
+    
     </body>
 </html>

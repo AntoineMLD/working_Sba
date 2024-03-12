@@ -82,7 +82,8 @@ DB_PASSWORD = get_env('POSTGRES_PASSWORD')
 DB_DATABASE = get_env('POSTGRES_DB')
 DB_HOST = get_env('POSTGRES_HOST')
 DB_PORT = get_env('POSTGRES_PORT')
-
+print('*******************************************')
+print(DB_PASSWORD)
 POSTGRES_AVAIL = all(
 
     [

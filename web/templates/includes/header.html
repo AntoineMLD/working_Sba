@@ -21,17 +21,18 @@
         <!-- Authentication Links -->
         {% if user.is_authenticated %}
           <li class="relative">
-            <span class="px-3 py-2 rounded hover:bg-gray-700 hover:text-white">{{ user.get_username }}</span>
-            <ul class="absolute hidden bg-gray-800 text-white">
+            <span class="px-3 py-2 rounded text-red-500 hover:bg-gray-700 hover:text-white">{{ user.get_username }}</span>
+            <ul class="absolute bg-gray-800 text-white">
               <li><a href="{% url 'logout' %}" class="block px-3 py-2 text-white hover:bg-gray-700">Log out</a></li>
             </ul>
           </li>
         {% else %}
           <li><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'login' %}">Login</a></li>
           <li><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'register' %}">Register</a></li>
+          
         {% endif %}
       </ul>
     </div>
   </nav>
 </header>
-<div class="mt-20"></div> <!-- Adjust the margin to ensure content is not hidden behind the fixed navbar -->
+<div class="mt-30"></div> 
