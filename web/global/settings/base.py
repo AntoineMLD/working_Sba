@@ -82,8 +82,7 @@ DB_PASSWORD = get_env('POSTGRES_PASSWORD')
 DB_DATABASE = get_env('POSTGRES_DB')
 DB_HOST = get_env('POSTGRES_HOST')
 DB_PORT = get_env('POSTGRES_PORT')
-print('*******************************************')
-print(DB_PASSWORD)
+
 POSTGRES_AVAIL = all(
 
     [
@@ -150,14 +149,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / 'static'
 ]
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

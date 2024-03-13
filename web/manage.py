@@ -2,12 +2,13 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-import dotenv
+
+from utils.environment import get_env
 
 def main():
     """Run administrative tasks."""
-    DEBUG = os.environ.get('DEBUG') == '1'
-
+    DEBUG = get_env('DEBUG') == '1'
+    print('&&&&&', get_env('DEBUG'))
     if DEBUG :
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'global.settings.dev')
     else :
@@ -25,5 +26,4 @@ def main():
 
 
 if __name__ == "__main__":
-    dotenv.load_dotenv(override=True)
     main()
