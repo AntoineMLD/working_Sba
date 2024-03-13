@@ -2,29 +2,30 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block content %}
-<div class="form-container w-full">
-  <div class="form-image">
+
     
-  </div>
-  <div class="form-content w-1/2 mx-auto">
-    <h1>Formulaire de Prédiction</h1>
+  
+  <div class="form-content intro-text text-center p-5 bg-white bg-opacity-75 rounded-lg shadow-lg mt-10">
+    <h1 class="font-bold">Formulaire de Prédiction</h1>
     <p>Remplissez les champs pour prédire la garantie</p>
     <form method="POST">
       {% csrf_token %}
       <!-- Dynamiquement généré à partir de votre formulaire Django -->
       {% for field in formulaire %} 
-      <div class="form-field grid grid-cols-2 gap-4 p-2">
+      <div class="form-field grid grid-cols-2">
+      
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      
         {{ field }}
+      
         {% if field.help_text %}
         <small>{{ field.help_text }}</small>
         {% endif %}
       </div>
       {% endfor %}
-      <button type="submit">Soumettre</button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Soumettre</button>
     </form>
-    <div>
-          <div>
+    
               {% if data %}
       
               <strong>Prédiction :</strong>
@@ -35,10 +36,9 @@
                   Garantie refusée !
                 {% endif %}
               </span>
-          </div>
-      </div>
+          
       {% endif %}
-    </div>
   </div>
-</div>
+  
+
 {% endblock content %}

@@ -12,23 +12,19 @@
       <span class="icon-bar h-1 w-6 my-1 bg-white"></span>
     </button>
     <div id="navbar-menu" aria-labelledby="navbar-toggle">
-      <ul class="flex flex-col lg:flex-row list-none mt-4 lg:mt-0">
-        <li class="navbar-item"><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'home' %}">Home</a></li>
-        <li class="navbar-item"><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'about' %}">About Us</a></li>
-        <li class="navbar-item"><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'formulaire' %}">Form Prediction</a></li>
-        <li class="navbar-item"><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'contact' %}">Contact</a></li>
+      <ul class="flex flex-col lg:flex-row list-none mt-4 lg:mt-0 gap-6">
+        <li class="navbar-item"><a class="p-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'home' %}">Home</a></li>
+        <li class="navbar-item"><a class="p-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'about' %}">About Us</a></li>
+        <li class="navbar-item"><a class="p-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'formulaire' %}">Form Prediction</a></li>
+        <li class="navbar-item"><a class="p-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'contact' %}">Contact</a></li>
         
         <!-- Authentication Links -->
         {% if user.is_authenticated %}
-          <li class="relative">
-            <span class="px-3 py-2 rounded text-red-500 hover:bg-gray-700 hover:text-white">{{ user.get_username }}</span>
-            <ul class="absolute bg-gray-800 text-white">
-              <li><a href="{% url 'logout' %}" class="block px-3 py-2 text-white hover:bg-gray-700">Log out</a></li>
-            </ul>
-          </li>
+          <li class="rounded text-red-500 hover:bg-gray-700 hover:text-white">{{ user.get_username }}</li>
+          <li class="text-white"><a href="{% url 'logout' %}" class="hover:bg-gray-700">Log out</a></li>
         {% else %}
-          <li><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'login' %}">Login</a></li>
-          <li><a class="px-3 py-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'register' %}">Register</a></li>
+          <li><a class="p-2 rounded text-white hover:bg-gray-700 hover:text-white" href="{% url 'login' %}">Login</a></li>
+          <li><a class="p-2 rounde-lg text-white hover:bg-gray-700 hover:text-white" href="{% url 'register' %}">Register</a></li>
           
         {% endif %}
       </ul>

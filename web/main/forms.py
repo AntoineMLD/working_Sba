@@ -56,6 +56,8 @@ NAICS_CHOICES = (
 )
 
 class ModelApiForm(forms.ModelForm):
+    # Personnalisation des champs du formulaire avec des widgets et des valeurs initiales conditionnelles au mode DEBUG
+    
     ApprovalDate = forms.DateField(label='Approval Date', widget=forms.DateInput(attrs={'class': 'date-input', 'type': 'date'}), initial=lambda: '2024-04-01' if DEBUG else '')
     Term = forms.IntegerField(label='Loan term in months', initial=lambda: '12' if DEBUG else '')
     NoEmp = forms.IntegerField(label='Number of business employees', initial=lambda: '5' if DEBUG else '')
@@ -75,17 +77,24 @@ class ModelApiForm(forms.ModelForm):
         fields = '__all__'
 
     
-    
+
+
+# Définition d'un formulaire de connexion pour les utilisateurs   
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=65)
     password = forms.CharField(max_length=65, widget=forms.PasswordInput)
 
 
+
+# Définition d'un formulaire d'inscription pour les nouveaux utilisateurs, étendant UserCreationForm pour inclure des fonctionnalités supplémentaires
 class RegisterForm(UserCreationForm):
     class Meta:
         model=User
         fields = ['username', 'email', 'password1', 'password2']
 
+
+
+# Définition d'un formulaire de contact simple pour la collecte de noms, emails et messages des utilisateurs
 
 class ContactForm(forms.Form):
     name = forms.CharField(label='Your Name', max_length=100)
