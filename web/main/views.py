@@ -45,9 +45,8 @@ def contact(request):
 
 @login_required
 def formulaire(request):
-    api_url = get_env('URL_API')
+    api_url = get_env('URL_API') + 'predict'
     
-    print(api_url)
     if request.method == "POST":
         form = ModelApiForm(request.POST)
         if form.is_valid():
