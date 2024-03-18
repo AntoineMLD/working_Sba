@@ -4,8 +4,6 @@
 data/
 venv
 data 
-Dockerfile
-.dockerignore   
 venv/*
 
 
